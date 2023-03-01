@@ -2,14 +2,14 @@
 
 ### ROG-Map: An Efficient Robocentric Occupancy Grid Map for Large-scene and High-resolution LiDAR-based Motion Planning
 
-**Preprint**: https://arxiv.org/pdf/2302.14819.pdf
+**Preprint**: https://arxiv.org/abs/2302.14819
 
 ```
-@misc{2302.14819,
-Author = {Yunfan Ren and Yixi Cai and Fangcheng Zhu and Siqi Liang and Fu Zhang},
-Title = {ROG-Map: An Efficient Robocentric Occupancy Grid Map for Large-scene and High-resolution LiDAR-based Motion Planning},
-Year = {2023},
-Eprint = {arXiv:2302.14819},
+@article{ren2023rogmap,
+    title={ROG-Map: An Efficient Robocentric Occupancy Grid Map for Large-scene and High-resolution LiDAR-based Motion Planning},
+    author={Yunfan Ren and Yixi Cai and Fangcheng Zhu and Siqi Liang and Fu Zhang},
+    journal={arXiv preprint arXiv:2302.14819},
+    year={2023}
 }
 ```
 
