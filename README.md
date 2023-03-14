@@ -32,7 +32,7 @@ The ROG-Map is an occupancy grid map (OGM), and all methods based on OGM can be 
 
 We will provide numerous examples to help you apply ROG-Map to your own projects.
 
-## 1.2 What's the difference between existing methods?
+## 1.2 What are the differences compared to existing methods?
 
 * Using a zero-copy map sliding strategy, ROG-Map maintains only a local map near the robot, enabling it to handle large-scale scene missions in unbounded environments.
 * A novel incremental inflation method significantly decreases the computation time of obstacle inflation.
