@@ -124,7 +124,7 @@ roslaunch rog_map_example astar_example.launch
 
 Then, you can press `G` to enable `3D Nav Goal` in RViz and click to select a point. Each time you select two points, ROG-Map will perform path planning between them.
 
-You can also enable the `visualize_process_en` param at [./ROG-Map/examples/rog_map_example/config/astar_example.yaml](./ROG-Map/examples/rog_map_example/config/astar_example.yaml) to visualize the search process:
+You can also enable the `visualize_process_en` param at [./examples/rog_map_example/config/astar_example.yaml](./examples/rog_map_example/config/astar_example.yaml) to visualize the search process:
 
 ```yalm
 astar:
@@ -144,7 +144,7 @@ roslaunch rog_map_example rrt_example.launch
 
 Then, you can press `G` to enable `3D Nav Goal` in RViz and click to select a point. Each time you select two points, ROG-Map will perform path planning between them.
 
-You can also enable the `visualize_process_en` param at [./ROG-Map/examples/rog_map_example/config/rrt_example.yaml](./ROG-Map/examples/rog_map_example/config/rrt_example.yaml) to visualize the sampling process:
+You can also enable the `visualize_process_en` param at [./examples/rog_map_example/config/rrt_example.yaml](./examples/rog_map_example/config/rrt_example.yaml) to visualize the sampling process:
 
 ```yalm
 rrt_star:
