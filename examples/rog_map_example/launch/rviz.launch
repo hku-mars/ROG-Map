@@ -1,0 +1,4 @@
+<launch>
+        <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen"
+              args="-d $(find rog_map_example)/config/viz_default.rviz"/>
+</launch>

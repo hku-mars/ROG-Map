@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.3.1 commit date:2022-10-04, commit time:18:35, hash:b292cfe5a936</authoring_tool>
+    </contributor>
+    <created>2024-01-28T22:55:21</created>
+    <modified>2024-01-28T22:55:21</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras>
+    <camera id="Camera-camera" name="Camera">
+      <optics>
+        <technique_common>
+          <perspective>
+            <xfov sid="xfov">39.59775</xfov>
+            <aspect_ratio>1.777778</aspect_ratio>
+            <znear sid="znear">0.1</znear>
+            <zfar sid="zfar">100</zfar>
+          </perspective>
+        </technique_common>
+      </optics>
+      <extra>
+        <technique profile="blender">
+          <shiftx sid="shiftx" type="float">0</shiftx>
+          <shifty sid="shifty" type="float">0</shifty>
+          <dof_distance sid="dof_distance" type="float">10</dof_distance>
+        </technique>
+      </extra>
+    </camera>
+  </library_cameras>
+  <library_lights>
+    <light id="Light-light" name="Light">
+      <technique_common>
+        <point>
+          <color sid="color">1000 1000 1000</color>
+          <constant_attenuation>1</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0.00111109</quadratic_attenuation>
+        </point>
+      </technique_common>
+      <extra>
+        <technique profile="blender">
+          <type sid="type" type="int">0</type>
+          <flag sid="flag" type="int">0</flag>
+          <mode sid="mode" type="int">1</mode>
+          <gamma sid="blender_gamma" type="float">1</gamma>
+          <red sid="red" type="float">1</red>
+          <green sid="green" type="float">1</green>
+          <blue sid="blue" type="float">1</blue>
+          <shadow_r sid="blender_shadow_r" type="float">0</shadow_r>
+          <shadow_g sid="blender_shadow_g" type="float">0</shadow_g>
+          <shadow_b sid="blender_shadow_b" type="float">0</shadow_b>
+          <energy sid="blender_energy" type="float">1000</energy>
+          <dist sid="blender_dist" type="float">29.99998</dist>
+          <spotsize sid="spotsize" type="float">75</spotsize>
+          <spotblend sid="spotblend" type="float">0.15</spotblend>
+          <att1 sid="att1" type="float">0</att1>
+          <att2 sid="att2" type="float">1</att2>
+          <falloff_type sid="falloff_type" type="int">2</falloff_type>
+          <clipsta sid="clipsta" type="float">0.04999995</clipsta>
+          <clipend sid="clipend" type="float">30.002</clipend>
+          <bias sid="bias" type="float">1</bias>
+          <soft sid="soft" type="float">3</soft>
+          <bufsize sid="bufsize" type="int">2880</bufsize>
+          <samp sid="samp" type="int">3</samp>
+          <buffers sid="buffers" type="int">1</buffers>
+          <area_shape sid="area_shape" type="int">1</area_shape>
+          <area_size sid="area_size" type="float">0.1</area_size>
+          <area_sizey sid="area_sizey" type="float">0.1</area_sizey>
+          <area_sizez sid="area_sizez" type="float">1</area_sizez>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_effects>
+    <effect id="材质-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.8000001 0.2460878 0.03597401 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="材质-material" name="材质">
+      <instance_effect url="#材质-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="柱体-mesh" name="柱体">
+      <mesh>
+        <source id="柱体-mesh-positions">
+          <float_array id="柱体-mesh-positions-array" count="66">0 0 -0.5 0 0 0.5 0 1 -0.1666666 0 1 0.1666666 0.3232819 0.4449594 0.1666666 0.3232819 0.4449594 -0.1666666 0.9510565 0.309017 0.1666666 0.9510565 0.309017 -0.1666666 0.5230811 -0.1699593 0.1666666 0.5230811 -0.1699593 -0.1666666 0.5877853 -0.809017 0.1666666 0.5877853 -0.809017 -0.1666666 0 -0.55 0.1666666 0 -0.55 -0.1666666 -0.5877853 -0.809017 0.1666666 -0.5877853 -0.809017 -0.1666666 -0.5230811 -0.1699593 0.1666666 -0.5230811 -0.1699593 -0.1666666 -0.9510565 0.309017 0.1666666 -0.9510565 0.309017 -0.1666666 -0.3232819 0.4449594 0.1666666 -0.3232819 0.4449594 -0.1666666</float_array>
+          <technique_common>
+            <accessor source="#柱体-mesh-positions-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="柱体-mesh-normals">
+          <float_array id="柱体-mesh-normals-array" count="102">0.4771409 0.2779095 0.8337283 0.116863 0.5396668 0.8337284 0.4117522 -0.3679093 0.8337284 0.549366 0.05562293 0.8337284 -0.222664 -0.5052899 0.8337283 0.222664 -0.5052899 0.8337283 -0.549366 0.05562293 0.8337284 -0.4117522 -0.3679093 0.8337284 -0.1168629 0.5396668 0.8337284 -0.477141 0.2779095 0.8337284 -0.4771409 0.2779095 -0.8337283 -0.864112 0.5032997 0 -0.116863 0.5396668 -0.8337284 -0.2116412 0.9773474 0 -0.4117522 -0.3679093 -0.8337284 -0.7456917 -0.6662912 0 -0.549366 0.05562293 -0.8337284 -0.9949133 0.1007343 0 0.222664 -0.5052899 -0.8337283 0.4032492 -0.9150903 0 -0.222664 -0.5052899 -0.8337283 -0.4032492 -0.9150903 0 0.549366 0.05562293 -0.8337284 0.9949135 0.1007342 0 0.4117522 -0.3679093 -0.8337284 0.7456917 -0.6662912 0 0.116863 0.5396668 -0.8337284 0.2116412 0.9773475 0 0.4771409 0.2779095 -0.8337283 0.864112 0.5032997 0 -0.2116412 0.9773475 0 -0.9949135 0.1007342 0 0.9949133 0.1007343 0 0.2116412 0.9773474 0</float_array>
+          <technique_common>
+            <accessor source="#柱体-mesh-normals-array" count="34" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="柱体-mesh-map-0">
+          <float_array id="柱体-mesh-map-0-array" count="240">1 0.8333333 0.9 1 0.9 0.8333333 0.9 0.8333333 0.8 1 0.7999999 0.8333333 0.7999999 0.8333333 0.6999999 1 0.6999999 0.8333333 0.6999999 0.8333333 0.5999999 1 0.5999999 0.8333333 0.5999999 0.8333333 0.4999999 1 0.4999999 0.8333333 0.4999999 0.8333333 0.3999999 1 0.3999999 0.8333333 0.3999999 0.8333333 0.2999999 1 0.2999999 0.8333333 0.2999999 0.8333333 0.1999999 1 0.1999999 0.8333333 0.1999999 0.8333333 0.0999999 1 0.0999999 0.8333333 0.0999999 0.8333333 0 1 0 0.8333333 0.0999999 0.5 0.0999999 0.6666666 0 0.6666666 0.0999999 0.8333333 0 0.6666666 0.0999999 0.6666666 0.1999999 0.5 0.1999999 0.6666666 0.0999999 0.6666666 0.1999999 0.8333333 0.0999999 0.6666666 0.1999999 0.6666666 0.2999999 0.5 0.2999999 0.6666666 0.1999999 0.6666666 0.2999999 0.8333333 0.1999999 0.6666666 0.2999999 0.6666666 0.3999999 0.5 0.3999999 0.6666666 0.2999999 0.6666666 0.3999999 0.8333333 0.2999999 0.6666666 0.3999999 0.6666666 0.4999999 0.5 0.4999999 0.6666666 0.3999999 0.6666666 0.4999999 0.8333333 0.3999999 0.6666666 0.4999999 0.6666666 0.5999999 0.5 0.5999999 0.6666666 0.4999999 0.6666666 0.5999999 0.8333333 0.4999999 0.6666666 0.5999999 0.6666666 0.6999999 0.5 0.6999999 0.6666666 0.5999999 0.6666666 0.6999999 0.8333333 0.5999999 0.6666666 0.6999999 0.6666666 0.8 0.5 0.8 0.6666666 0.6999999 0.6666666 0.7999999 0.8333333 0.6999999 0.6666666 0.8 0.6666666 0.9 0.5 0.9 0.6666666 0.8 0.6666666 0.9 0.8333333 0.8 0.6666666 0.9 0.6666666 1 0.5 1 0.6666666 0.9 0.6666666 1 0.8333333 0.9 0.6666666 1 0.6666666 0.0999999 0.8333333 0 0.8333333 0 0.6666666 0.1999999 0.8333333 0.0999999 0.8333333 0.0999999 0.6666666 0.2999999 0.8333333 0.1999999 0.8333333 0.1999999 0.6666666 0.3999999 0.8333333 0.2999999 0.8333333 0.2999999 0.6666666 0.4999999 0.8333333 0.3999999 0.8333333 0.3999999 0.6666666 0.5999999 0.8333333 0.4999999 0.8333333 0.4999999 0.6666666 0.6999999 0.8333333 0.5999999 0.8333333 0.5999999 0.6666666 0.7999999 0.8333333 0.6999999 0.8333333 0.6999999 0.6666666 0.9 0.8333333 0.7999999 0.8333333 0.8 0.6666666 1 0.8333333 0.9 0.8333333 0.9 0.6666666</float_array>
+          <technique_common>
+            <accessor source="#柱体-mesh-map-0-array" count="120" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="柱体-mesh-vertices">
+          <input semantic="POSITION" source="#柱体-mesh-positions"/>
+        </vertices>
+        <triangles material="材质-material" count="40">
+          <input semantic="VERTEX" source="#柱体-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#柱体-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#柱体-mesh-map-0" offset="2" set="0"/>
+          <p>3 0 0 1 0 1 4 0 2 4 1 3 1 1 4 6 1 5 6 2 6 1 2 7 8 2 8 8 3 9 1 3 10 10 3 11 10 4 12 1 4 13 12 4 14 12 5 15 1 5 16 14 5 17 14 6 18 1 6 19 16 6 20 16 7 21 1 7 22 18 7 23 18 8 24 1 8 25 20 8 26 20 9 27 1 9 28 3 9 29 0 10 30 21 10 31 2 10 32 20 11 33 2 11 34 21 11 35 0 12 36 19 12 37 21 12 38 18 13 39 21 13 40 19 13 41 0 14 42 17 14 43 19 14 44 16 15 45 19 15 46 17 15 47 0 16 48 15 16 49 17 16 50 14 17 51 17 17 52 15 17 53 0 18 54 13 18 55 15 18 56 12 19 57 15 19 58 13 19 59 0 20 60 11 20 61 13 20 62 10 21 63 13 21 64 11 21 65 0 22 66 9 22 67 11 22 68 8 23 69 11 23 70 9 23 71 0 24 72 7 24 73 9 24 74 6 25 75 9 25 76 7 25 77 0 26 78 5 26 79 7 26 80 4 27 81 7 27 82 5 27 83 0 28 84 2 28 85 5 28 86 3 29 87 5 29 88 2 29 89 20 11 90 3 11 91 2 11 92 18 30 93 20 30 94 21 30 95 16 15 96 18 15 97 19 15 98 14 31 99 16 31 100 17 31 101 12 19 102 14 19 103 15 19 104 10 21 105 12 21 106 13 21 107 8 32 108 10 32 109 11 32 110 6 25 111 8 25 112 9 25 113 4 33 114 6 33 115 7 33 116 3 29 117 4 29 118 5 29 119</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="柱体" name="柱体" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#柱体-mesh" name="柱体">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="材质-material" target="#材质-material">
+                <bind_vertex_input semantic="UV 贴图" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="Camera" name="Camera" type="NODE">
+        <matrix sid="transform">0.6859207 -0.3240135 0.6515582 7.358891 0.7276763 0.3054208 -0.6141704 -6.925791 0 0.8953956 0.4452714 4.958309 0 0 0 1</matrix>
+        <instance_camera url="#Camera-camera"/>
+      </node>
+      <node id="Light" name="Light" type="NODE">
+        <matrix sid="transform">-0.2908646 -0.7711008 0.5663932 4.076245 0.9551712 -0.1998834 0.2183912 1.005454 -0.05518906 0.6045247 0.7946723 5.903862 0 0 0 1</matrix>
+        <instance_light url="#Light-light"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,10 @@
+<launch>
+    <node name="rm_node" pkg="rog_map_example" type="marsim_example_node" output="log">
+<!--        remember to load the parameters like here!!-->
+        <rosparam command="load" file="$(find rog_map_example)/config/no_raycast.yaml"/>
+    </node>
+
+    <node name="keyboard_control" pkg="rog_map_example" type="keyboard_control.py" output="screen">
+
+    </node>
+</launch>

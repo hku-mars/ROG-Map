@@ -1,0 +1,17 @@
+<launch>
+
+    <arg name="rviz_enable" default="true"/>
+
+
+    <node name="rm_node" pkg="rog_map_example" type="rrt_example_node" output="screen">
+        <param name="rog_map/pcd_name" value="$(find rog_map_example)/PCD/small_forest_002.pcd"/>
+        <rosparam command="load" file="$(find rog_map_example)/config/rrt_example.yaml"/>
+    </node>
+
+
+    <group if="$(arg rviz_enable)">
+        <node pkg="rviz" type="rviz" name="viz_real" args="-d $(find rog_map_example)/config/viz_default.rviz"></node>
+    </group>
+
+
+</launch>

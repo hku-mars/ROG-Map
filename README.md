@@ -1,8 +1,34 @@
-# ROG-Map
+<div align="center">
+    <h2>ROG-Map: An Efficient Robocentric Occupancy Grid Map for Large-scene and High-resolution LiDAR-based Motion Planning</h2>
+    <strong>IROS 2024</strong>
+    <br>
+        <a href="https://github.com/RENyunfan" target="_blank">Yunfan REN</a>,
+        <a href="https://github.com/Ecstasy-EC" target="_blank">Yixi Cai</a>
+        <a href="https://github.com/zfc-zfc" target="_blank">Fangcheng Zhu</a>,
+        <a href="https://github.com/stdcat" target="_blank">Siqi Liang</a>, and
+        <a href="https://mars.hku.hk/people.html" target="_blank">Fu Zhang</a>
+    <p>
+        <h45>
+           <img src='./misc/mars_logo.svg' alt='HKU MaRS Lab'>
+            <br>
+        </h5>
+    </p>
+    <a href='https://arxiv.org/pdf/2302.14819.pdf'><img src='./misc/arXiv-rog-blue.svg' alt='arxiv'></a>
+    <a href="https://www.bilibili.com/video/BV1wv4y1h7sa/"><img alt="Bilibili" src="./misc/Video-Bilibili-blue.svg"/></a>
+    <a href="https://youtu.be/eDkwGXCea7w?si=IKCW5O0otU0bObbC"><img alt="Youtube" src="./misc/Video-Youtube-red.svg"/></a>
+</div>
 
-### ROG-Map: An Efficient Robocentric Occupancy Grid Map for Large-scene and High-resolution LiDAR-based Motion Planning
 
-**Preprint**: https://arxiv.org/abs/2302.14819
+
+
+## Updates
+
+* **Aug. 30, 2024** - Released the preview version of ROG-Map, including examples on:
+  * Path planning with RRT* with [rrt_example.launch](./examples/rog_map_example/launch/rrt_example.launch) and A* algorithom with  [astar_example.launch](./examples/rog_map_example/launch/astar_example.launch)
+  * Keyboard control and integration with [MARSIM](https://github.com/hku-mars/MARSIM) with [marsim_example.launch](./examples/rog_map_example/launch/marsim_example.launch)
+* **Jun. 30, 2024** - Our paper was accepted by [IEEE/RSJ IROS 204](https://iros2024-abudhabi.org/)
+
+If our repository supports your academic projects, please cite our paper. Thank you!
 
 ```
 @article{ren2023rogmap,
@@ -15,42 +41,239 @@
 
 Click for the video demo.
 
-[![Video Demo](./img/out.png)](https://www.youtube.com/watch?v=eDkwGXCea7w)
+[![Video Demo](./misc/out.png)](https://www.youtube.com/watch?v=eDkwGXCea7w)
 
-# 1 About ROG-Map
+## Build Instructions
 
-## 1.1 What can ROG-Map do?
-
-The ROG-Map is an occupancy grid map (OGM), and all methods based on OGM can be seamlessly implemented on ROG-Map, including:
-
-* A* path search.
-* Flight corridor generation.
-* Frontier generation for autonomous exploration.
-* Point collision check and line segment collision check.
-* Box search.
-* ...
-
-We will provide numerous examples to help you apply ROG-Map to your own projects.
-
-## 1.2 What are the differences compared to existing methods?
-
-* Using a zero-copy map sliding strategy, ROG-Map maintains only a local map near the robot, enabling it to handle large-scale scene missions in unbounded environments.
-* A novel incremental inflation method significantly decreases the computation time of obstacle inflation.
-
-## 1.3 How can I test it?
-
-When the code is released, you can test it with
-1. Run with [FAST-LIO: A computationally efficient and robust LiDAR-inertial odometry (LIO) package](https://github.com/hku-mars/FAST_LIO)
-   1. Building a robocentric occupancy grid map directly using FAST-LIO as input.
-
-2. Run with [MARSIM](https://github.com/hku-mars/MARSIM)
-   1. With MARSIM, you can test your own motion planning algorithms based on ROG-Map.
+```bash
+# install dependencies
+sudo apt-get install ros-noetic-rosfmt
+# for MARSIM example
+sudo apt-get install libglfw3-dev libglew-dev
+# Eigen and soft link
+sudo apt-get install libeigen3-dev       
+sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eigen
+# dw for backward cpp
+sudo apt-get install libdw-dev
 
 
+mkdir -p rog_ws/src && cd rog_ws/src
+git clone https://github.com/hku-mars/ROG-Map.git
+cd ..
+catkin_make -DBUILD_TYPE=Release
+```
+
+**Known Build Issues**
+
+- Disable the conda environment with `conda deactivate` to avoid linking issues. If you have try `catkin_make` in conda environment, please delete the `build` and `devel` and deactivate conda, and try `catkin_make` again.
+- If VizCfg fails to generate, try building with `catkin_make -DCATKIN_DEVEL_PREFIX:PATH=${change-to-your-path-to-rog_ws}/devel`.
+
+## Overview
+
+ROG-Map's three main features are **zero-copy map sliding**, **incremental map expansion**, and a **counter-based multi-resolution map**. All sub-maps and functionalities are built upon the `SlidingMap` structure. The currently open-source version includes:
+
+- **Multi-resolution inflation maps and incremental obstacle inflation**:
+  - Example: ProbMap resolution 0.1 m (yellow) with InfMap resolution 0.2 m (gray)
+
+
+<img src="misc/image-20240830181904520.png" alt="image-20240830181904520" style="zoom: 50%;" />
+
+- **Incremental Frontier generation**
+  - Example: Frontiers with a sensing range of 5m
+
+<img src="misc/image-20240830183455023-17250143906771.png" alt="image-20240830183455023" style="zoom:50%;" />
+
+- **Sliding ESDF map generation**
+
+  <img src="misc/image-20240830183740886.png" alt="image-20240830183740886" style="zoom: 50%;" />
 
 
 
-# 2 Date of code release
+## Applications
 
-Our paper is currently under review, and **the code of ROG-Map will be released as our work is accepted**.
+### 1. Running with MARSIM
 
+First, launch the MARSIM environment:
+
+```bash
+source devel/setup.bash # or source devel/setup.zsh
+roslaunch test_interface single_drone_os128.launch
+```
+
+Then, launch the ROG-Map test node and the keyboard controller:
+
+```bash
+sudo chmod +x -R src
+roslaunch rog_map_example marsim_example.launch
+```
+
+After launching, click on the terminal running the second launch file, use the keyboard to control the drone, and observe the local sliding map:
+
+![](misc/marsim.gif)
+
+Use `W` `A` `S` `D` on your keyboard to control the drone's velocity, press the spacebar to stop, and press `Q` or `Ctrl + C` to exit.
+
+### 2 Running A* Search Example
+
+```bash
+source devel/setup.bash # or source devel/setup.zsh
+roslaunch rog_map_example astar_example.launch 
+```
+
+![](misc/astar_no_visual.gif)
+
+Then, you can press `G` to enable `3D Nav Goal` in RViz and click to select a point. Each time you select two points, ROG-Map will perform path planning between them.
+
+You can also enable the `visualize_process_en` param at [./ROG-Map/examples/rog_map_example/config/astar_example.yaml](./ROG-Map/examples/rog_map_example/config/astar_example.yaml) to visualize the search process:
+
+```yalm
+astar:
+  visualize_process_en: true
+```
+
+![](misc/astar_visual_process.gif)
+
+### 3 Run RRT* example
+
+```bash
+source devel/setup.bash # or source devel/setup.zsh
+roslaunch rog_map_example rrt_example.launch 
+```
+
+![](misc/rrt_no_visual.gif)
+
+Then, you can press `G` to enable `3D Nav Goal` in RViz and click to select a point. Each time you select two points, ROG-Map will perform path planning between them.
+
+You can also enable the `visualize_process_en` param at [./ROG-Map/examples/rog_map_example/config/rrt_example.yaml](./ROG-Map/examples/rog_map_example/config/rrt_example.yaml) to visualize the sampling process:
+
+```yalm
+rrt_star:
+  visualize_process_en: true
+```
+
+![](misc/rrt_visual.gif)
+
+### TODO
+
+- Add example for safe flight corridor generation.
+- Add example for trajectory optimization.
+
+
+
+## Using ROG-Map in Your Own ROS Project
+
+To use ROG-Map, refer to the [rog_map_example package](./examples/rog_map_example). Here’s a basic guide:
+
+1. Copy the `rog_map` package to your workspace and add the following dependencies in your `package.xml`:
+
+```xml
+  <build_depend>rog_map</build_depend>
+  <exec_depend>rog_map</exec_depend>
+```
+
+2. Include `rog_map` in your `CMakeLists.txt`:
+
+```cmake
+find_package(catkin REQUIRED COMPONENTS
+        roscpp
+        std_msgs
+        pcl_ros
+        geometry_msgs
+        nav_msgs
+        rog_map # here!
+)
+```
+
+3. Include `rog_map` in your source file as demonstrated in [marsim_example_node.cpp](./examples/rog_map_example/Apps/marsim_example_node.cpp)
+
+```cpp
+#include "rog_map/rog_map.h"
+
+int main(int argc, char** argv) {
+    ros::init(argc, argv, "rm_node");
+    ros::NodeHandle nh("~");
+
+    pcl::console::setVerbosityLevel(pcl::console::L_ALWAYS);
+
+    /* 1. Creat a ROGMap ptr*/
+    rog_map::ROGMap::Ptr rog_map_ptr = std::make_shared<rog_map::ROGMap>(nh);
+
+    /* Publisher and subcriber */
+    ros::AsyncSpinner spinner(0);
+    spinner.start();
+    ros::Duration(1.0).sleep();
+
+
+    ros::waitForShutdown();
+    return 0;
+}
+```
+
+4. `ROG-Map` automatically reads parameters from the ROS parameter server. Ensure you load parameters in your launch file:
+
+```xml
+<launch>
+    <node name="rm_node" pkg="rog_map_example" type="marsim_example_node" output="log">
+        <!--        remember to load the parameters like here!! -->
+        <rosparam command="load" file="$(find rog_map_example)/config/marsim_example.yaml"/>
+    </node>
+
+    <node name="keyboard_control" pkg="rog_map_example" type="keyboard_control.py" output="screen">
+
+    </node>
+</launch>
+```
+
+5. Update ROG-Map by either:
+
+* **Using ROS topics**: 
+  * Specify `odom` and `point cloud` topic name and ROG-Map will automatically update.
+
+```yaml
+rog_map:
+  ros_callback:
+    enable: true
+    cloud_topic: "/cloud_registered"
+    odom_topic: "/lidar_slam/odom"
+    odom_timeout: 2.0
+```
+
+* **Manually updating**: Disable ROS topic updates in the configuration YAML:
+
+```yaml
+rog_map:
+  ros_callback:
+    enable: false
+    cloud_topic: "/cloud_registered"
+    odom_topic: "/lidar_slam/odom"
+    odom_timeout: 2.0
+
+```
+
+Then actively update ROG-Map by calling:
+
+```
+void ROGMap::updateMap(const PointCloud& cloud, const Pose& pose);
+```
+
+
+
+## Parameters
+
+We provide preset parameter files in [./examples/rog_map_example/config](./examples/rog_map_example/config) for your convenience. You can select and modify them as needed:
+
+- **No raycasting, only occupied and inflated maps**: [no_raycast.yaml](./examples/rog_map_example/config/no_raycast.yaml)
+- **Basic occupancy grid map with frontier generation and ESDF update disabled**: [pure_ogm.yaml](./examples/rog_map_example/config/pure_ogm.yaml)
+- ...
+
+
+
+
+
+## Acknowledgements
+
+Special thanks to [ZJU-FAST-Lab](https://github.com/ZJU-FAST-Lab) and [HKUST Aerial Robotics Group](https://github.com/HKUST-Aerial-Robotics) for their great works.
+
+- The RRT* example was adapted from [ZJU-FAST-Lab's sampling-based path finding](https://github.com/ZJU-FAST-Lab/sampling-based-path-finding).
+- Parts of ROG-Map and the A* example were inspired by [Ego-Planner](https://github.com/ZJU-FAST-Lab/ego-planner).
+- The ESDF module was modified from [Fast-Planner](https://github.com/HKUST-Aerial-Robotics/Fast-Planner), with the addition of local map sliding functionality.

@@ -1,0 +1,10 @@
+std_msgs/Header header
+uint32 pose_id
+uint32 time_stamp_ms
+uint8 flag
+geometry_msgs/Vector3 p_wi
+geometry_msgs/Vector3 v_wi
+geometry_msgs/Quaternion q_wi
+geometry_msgs/Quaternion[6] q_ic
+geometry_msgs/Vector3[6] p_ic
+float32 vps_from_vio

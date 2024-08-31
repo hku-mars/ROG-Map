@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="viz_toolkit" type="read_pcd" name="read_pcd" output="screen">
+
+        <param name="color/file_name" value="/home/yunfan/output.pcd" type="string"></param>
+        <param name="color/min_height" value="-1" type="double"></param>
+        <param name="color/max_height" value="4.5" type="double"></param>
+        <param name="color/map_type_name" value="Gray" type="string"></param>
+        <!--        <param name="color/map_type_name" value="Gray" type="string"></param>-->
+        <param name="color/frame_id" value="world" type="string"></param>
+        <param name="color/publish_rate" value="0.1" type="double"></param>
+        <param name="color/inverse_color" value="false" type="bool"></param>
+    </node>
+    <node pkg="rviz" type="rviz" name="test_env" args="-d $(find viz_toolkit)/rviz/default.rviz"></node>
+
+</launch>

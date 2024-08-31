@@ -1,0 +1,13 @@
+<launch>
+    <node pkg="odom_visualization" name="odom_visualization" type="odom_visualization" output="screen">
+        <remap from="~odom" to="/lidar_slam/odom"/>
+        <param name="mesh_resource" value="package://odom_visualization/meshes/yunque-M-2.dae"/>
+        <param name="color/a" value="1.0"/>
+        <param name="color/r" value="1.0"/>
+        <param name="color/g" value="1.0"/>
+        <param name="color/b" value="1.0"/>
+        <param name="covariance_scale" value="100.0"/>
+        <param name="robot_scale" value="10.0"/>
+    </node>
+    <node name="fpv" pkg="rviz" type="rviz" output="screen" args="-d $(find super_planner)/rviz/real_svc.rviz"/>
+</launch>

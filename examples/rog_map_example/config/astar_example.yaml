@@ -1,0 +1,104 @@
+#############################################
+#   Mapping                                 #
+#############################################
+# The points [out of local map] is considered to be [OUT_OF_MAP]
+# The points [out of virtual ceil or ground] is considered to be [OCCUPIED]
+
+astar:
+  visualize_process_en: true
+  map_voxel_num: [200,200,100]
+  # if allow diagonal expansion
+  allow_diag: true
+  # heu type: DIAG = 0, MANH = 1, EUCL = 2
+  heu_type: 2
+
+  example_start: [ -12.730165, -8.932557, 1.000000]
+  example_goal: [15.443455, 0.365021, 1.000000 ]
+
+
+rog_map:
+
+  resolution: 0.1
+  inflation_resolution: 0.2
+  inflation_step: 1
+  unk_inflation_en: false
+  unk_inflation_step: 1
+  map_size: [ 50,50,6 ]
+  # If the map rolling is disable, the map origin [m] should be set.
+  fix_map_origin: [ 0,0,0 ]
+  frontier_extraction_en: true
+
+  # Virtual ceil and ground
+  virtual_ceil_height: 9999
+  virtual_ground_height: -9999
+
+  load_pcd_en: true
+#  pcd_name: "/home/yunfan/Workspace/rog_ws/src/ROG-Map/examples/rog_map_example/PCD/small_forest_002.pcd"
+
+  map_sliding:
+    enable: true
+    # The minimum distance [m] to slide the map.
+    threshold: 0.3
+
+  esdf:
+    enable: true
+    resolution: 0.1
+    # The range of esdf around the odom [m].
+    local_update_box: [ 5,5,3 ]
+
+  # If [enable = true], the ROG-Map will actively take ros topic as input.
+  #  else user should call function [updateMap] to update the map.
+  ros_callback:
+    enable: true
+    cloud_topic: "/cloud_registered"
+    odom_topic: "/lidar_slam/odom"
+    odom_timeout: 2.0
+
+
+  visualization:
+    enable: true
+    # when enabled, use rqt_reconfigure to change the visualization parameters.
+    use_dynamic_reconfigure: false
+    # The rate of visualization [Hz], if set to 0, the visualization will not be triggered by frame.
+    time_rate: 10
+    # The frame rate of visualization [Hz], if set to 0, the visualization will not be triggered by frame.
+    frame_rate: 0
+    # visualization range along the odom [m].
+    range: [ 50,50,6 ]
+    frame_id: "world"
+    pub_unknown_map_en: false
+
+  # Intensity filter for input point cloud. If the point intensity is less than this value,
+  # it will be ignored (to avoid noise like dusk).
+  intensity_thresh: -10
+  # The temporal downsample rate for input point cloud.
+  #  e.g. if set to k, the point cloud will be downsampled to 1/k.
+  point_filt_num: 5
+
+  # Probabilistc update
+  raycasting:
+    # if disable, the map will only maintain occupied information, and all other grid
+    # will be considered as unknown.
+    enable: true
+    batch_update_size: 1
+    local_update_box: [ 50,50,5 ]
+    # The range of raycasting [m].
+    ray_range: [ 0.0, 999 ]
+
+    p_min: 0.12
+    p_miss: 0.49
+    p_free: 0.499
+    p_occ: 0.85
+    p_hit: 0.9
+    p_max: 0.98
+    # The threshold of a non-occupied inf map grid to be considered as free. [0.0-1.0]
+    # for counter map, if each cell contains N cells in prob map, then only when
+    # N_unk > N * unk_thresh cells are unknown, the cell will be considered as unknown.
+    # example: 1) if unk_thresh is set 0.0, then once at least one cell in prob map is unknown,
+    #             the cell will be considered as unknown.
+    #         2) if unk_thresh is set to 1.0, then only all cells in prob map are unknown,
+    #             the cell will be considered as unknown.
+    # in all, 1.0 is more aggressive while 0.0 is more conservative.
+    unk_thresh: 1.0
+
+

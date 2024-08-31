@@ -1,0 +1,12 @@
+float64 thrust
+float64 velocity_norm
+float64 acceleration_norm
+float64 jerk_norm
+geometry_msgs/Point position
+geometry_msgs/Vector3 velocity
+geometry_msgs/Vector3 acceleration
+geometry_msgs/Vector3 jerk
+geometry_msgs/Vector3 snap
+geometry_msgs/Vector3 attitude
+geometry_msgs/Vector3 angular_velocity
+
