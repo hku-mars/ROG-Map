@@ -86,6 +86,7 @@ Version: 3.3.7-2
 
 - Disable the conda environment with `conda deactivate` to avoid linking issues. If you have try `catkin_make` in conda environment, please delete the `build` and `devel` and deactivate conda, and try `catkin_make` again.
 - If VizCfg fails to generate, try building with `catkin_make -DCATKIN_DEVEL_PREFIX:PATH=${change-to-your-path-to-rog_ws}/devel`.
+- Eigen version problem [#7](https://github.com/hku-mars/ROG-Map/issues/7), tested Eigen version: `3.3.7-2`,`3.4.1`.
 
 ## Overview
 
