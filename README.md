@@ -50,17 +50,36 @@ Click for the video demo.
 sudo apt-get install ros-noetic-rosfmt
 # for MARSIM example
 sudo apt-get install libglfw3-dev libglew-dev
-# Eigen and soft link
+# Eigen [version testd: 3.3.7-2] and soft link 
 sudo apt-get install libeigen3-dev       
 sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eigen
 # dw for backward cpp
 sudo apt-get install libdw-dev
 
-
 mkdir -p rog_ws/src && cd rog_ws/src
 git clone https://github.com/hku-mars/ROG-Map.git
 cd ..
 catkin_make -DBUILD_TYPE=Release
+```
+
+**Report issue**
+
+When encountering build issues, please include the output from the version check script [./scripts/check_version.sh](./scripts/check_version.sh) when submitting your issue.
+
+```bash
+cd rog_map/scripts
+bash check_version.sh
+```
+
+Example:
+
+```
+=== GCC Version ===
+gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+=== G++ Version ===
+g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+=== Eigen Version ===
+Version: 3.3.7-2
 ```
 
 **Known Build Issues**
@@ -107,11 +126,25 @@ sudo chmod +x -R src
 roslaunch rog_map_example marsim_example.launch
 ```
 
+#### Control the drone with keyboard
+
 After launching, click on the terminal running the second launch file, use the keyboard to control the drone, and observe the local sliding map:
 
 ![](misc/marsim.gif)
 
 Use `W` `A` `S` `D` on your keyboard to control the drone's velocity, press the spacebar to stop, and press `Q` or `Ctrl + C` to exit.
+
+#### Control the drone with ROS topic
+
+Similar to the MARSIM API, the drone can be controlled through the `/planning/pos_cmd` ROS topic, which uses the custom message type `quadrotor_msgs/PositionCommand`. 
+
+In simulation, the drone model is idealized, meaning it will track the specified position and attitude (derived from the acceleration) with no delay. At a minimum, the following fields should be specified to control the drone:`position`,`acceleration`,` yaw`
+
+For a more realistic simulation, please refer to the original [MARSIM](https://github.com/hku-mars/MARSIM) version.
+
+A Python example demonstrating drone control is provided in [./examples/rog_map_example/Apps/keyboard_control.py](./examples/rog_map_example/Apps/keyboard_control.py)
+
+A similar implementation can also be created using C++.
 
 ### 2 Running A* Search Example
 
@@ -273,6 +306,8 @@ We provide preset parameter files in [./examples/rog_map_example/config](./examp
 ## Acknowledgements
 
 Special thanks to [ZJU-FAST-Lab](https://github.com/ZJU-FAST-Lab) and [HKUST Aerial Robotics Group](https://github.com/HKUST-Aerial-Robotics) for their great works.
+
+* The MARSIM is modified from [MARSIM](https://github.com/hku-mars/MARSIM)
 
 - The RRT* example was adapted from [ZJU-FAST-Lab's sampling-based path finding](https://github.com/ZJU-FAST-Lab/sampling-based-path-finding).
 - Parts of ROG-Map and the A* example were inspired by [Ego-Planner](https://github.com/ZJU-FAST-Lab/ego-planner).
