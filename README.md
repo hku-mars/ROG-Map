@@ -133,13 +133,20 @@ After launching, click on the terminal running the second launch file, use the k
 
 ![](misc/marsim.gif)
 
-Use `W` `A` `S` `D` on your keyboard to control the drone's velocity, press the spacebar to stop, and press `Q` or `Ctrl + C` to exit.
+Use `W` `A` `S` `D` on your keyboard to control the drone's velocity, press the spacebar to stop, and press `Q` orh 2 2 2 `Ctrl + C` to exit.
 
 #### Control the drone with ROS topic
 
 Similar to the MARSIM API, the drone can be controlled through the `/planning/pos_cmd` ROS topic, which uses the custom message type `quadrotor_msgs/PositionCommand`. 
 
 In simulation, the drone model is idealized, meaning it will track the specified position and attitude (derived from the acceleration) with no delay. At a minimum, the following fields should be specified to control the drone:`position`,`acceleration`,` yaw`
+
+You can try to control the drone through the script:  [call_pos_cmd.sh](./scripts/call_pos_cmd.sh) 
+
+```bash
+# 					 x y z
+bash scripts/call_pos_cmd.sh 1 2 2
+```
 
 For a more realistic simulation, please refer to the original [MARSIM](https://github.com/hku-mars/MARSIM) version.
 
