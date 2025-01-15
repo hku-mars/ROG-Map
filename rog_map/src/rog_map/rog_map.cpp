@@ -291,10 +291,10 @@ void ROGMap::cloudCallback(const sensor_msgs::PointCloud2ConstPtr& cloud_msg) {
         std::cout << YELLOW << " -- [ROS] Odom timeout, skip cloud callback." << RESET << std::endl;
         return;
     }
-    PointCloud temp_pc
+    PointCloud temp_pc;
     pcl::fromROSMsg(*cloud_msg, temp_pc);
     rc_.updete_lock.lock();
-    rc_.pc = tmp_pc;
+    rc_.pc = temp_pc;
     rc_.pc_pose = std::make_pair(robot_state_.p, robot_state_.q);
     rc_.unfinished_frame_cnt++;
     map_empty_ = false;
