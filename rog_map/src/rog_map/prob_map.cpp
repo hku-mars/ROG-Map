@@ -156,7 +156,7 @@ bool ProbMap::isOccupied(const Vec3i& id_g) const {
         return false;
     }
     if (id_g.z() > sc_.virtual_ceil_height_id_g ||
-        id_g.z() < sc_.virtual_ground_height_id_g + sc_.safe_margin_i) {
+        id_g.z() < sc_.virtual_ground_height_id_g ) {
         return true;
     }
     return isOccupied(occupancy_buffer_[getHashIndexFromGlobalIndex(id_g)]);
@@ -167,7 +167,7 @@ bool ProbMap::isUnknown(const Vec3i& id_g) const {
         return true;
     }
     if (id_g.z() > sc_.virtual_ceil_height_id_g ||
-        id_g.z() < sc_.virtual_ground_height_id_g + sc_.safe_margin_i) {
+        id_g.z() < sc_.virtual_ground_height_id_g ) {
         return false;
     }
     return isUnknown(occupancy_buffer_[getHashIndexFromGlobalIndex(id_g)]);
@@ -178,7 +178,7 @@ bool ProbMap::isKnownFree(const Vec3i& id_g) const {
         return false;
     }
     if (id_g.z() > sc_.virtual_ceil_height_id_g ||
-        id_g.z() < sc_.virtual_ground_height_id_g + sc_.safe_margin_i) {
+        id_g.z() < sc_.virtual_ground_height_id_g ) {
         return true;
     }
     return isKnownFree(occupancy_buffer_[getHashIndexFromGlobalIndex(id_g)]);
@@ -190,7 +190,7 @@ bool ProbMap::isFrontier(const Vec3i& id_g) const {
         return false;
     }
     if (id_g.z() > sc_.virtual_ceil_height_id_g ||
-        id_g.z() < sc_.virtual_ground_height_id_g + sc_.safe_margin_i) {
+        id_g.z() < sc_.virtual_ground_height_id_g ) {
         return false;
     }
 
@@ -369,7 +369,7 @@ void ProbMap::updateProbMap(const PointCloud& cloud, const Pose& pose) {
 
 GridType ProbMap::getGridType(Vec3i& id_g) const {
     if (id_g.z() <= sc_.virtual_ground_height_id_g ||
-        id_g.z() >= sc_.virtual_ceil_height_id_g - sc_.safe_margin_i) {
+        id_g.z() >= sc_.virtual_ceil_height_id_g) {
         return OCCUPIED;
     }
     if (!insideLocalMap(id_g)) {

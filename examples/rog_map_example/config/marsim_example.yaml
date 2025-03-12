@@ -21,7 +21,6 @@ rog_map:
 
   block_inf_pt: false
   kd_tree_en: false
-  safe_margin: 0.0
 
   load_pcd_en: false
 #  pcd_name: "/home/yunfan/Workspace/rog_ws/src/ROG-Map/examples/rog_map_example/PCD/small_forest_002.pcd"

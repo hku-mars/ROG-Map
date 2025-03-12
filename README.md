@@ -3,7 +3,7 @@
     <strong>IROS 2024</strong>
     <br>
         <a href="https://github.com/RENyunfan" target="_blank">Yunfan REN</a>,
-        <a href="https://github.com/Ecstasy-EC" target="_blank">Yixi Cai</a>
+        <a href="https://github.com/Ecstasy-EC" target="_blank">Yixi Cai</a>,
         <a href="https://github.com/zfc-zfc" target="_blank">Fangcheng Zhu</a>,
         <a href="https://github.com/stdcat" target="_blank">Siqi Liang</a>, and
         <a href="https://mars.hku.hk/people.html" target="_blank">Fu Zhang</a>
@@ -17,11 +17,9 @@
     <a href="https://www.bilibili.com/video/BV1wv4y1h7sa/"><img alt="Bilibili" src="./misc/Video-Bilibili-blue.svg"/></a>
     <a href="https://youtu.be/eDkwGXCea7w?si=IKCW5O0otU0bObbC"><img alt="Youtube" src="./misc/Video-Youtube-red.svg"/></a>
 </div>
-
-
-
-
 ## Updates
+
+* **January 29, 2025** - The ROS2 version of ROG-Map is now available in [SUPER ](https://github.com/hku-mars/SUPER)🛸, our open-source MAV navigation system recently accepted by *Science Robotics*. Check it out!
 
 * **Aug. 30, 2024** - Released the preview version of ROG-Map, including examples on:
   * Path planning with RRT* with [rrt_example.launch](./examples/rog_map_example/launch/rrt_example.launch) and A* algorithom with  [astar_example.launch](./examples/rog_map_example/launch/astar_example.launch)

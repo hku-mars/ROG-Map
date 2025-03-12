@@ -66,18 +66,17 @@ namespace rog_map {
 
     protected:
         struct SlidingConfig {
-            double resolution;
-            double resolution_inv;
-            double sliding_thresh;
-            bool map_sliding_en;
-            Vec3f fix_map_origin;
-            Vec3i visualization_range_i;
-            Vec3i map_size_i;
-            Vec3i half_map_size_i;
-            int virtual_ceil_height_id_g;
-            int virtual_ground_height_id_g;
-            int safe_margin_i;
-            int map_vox_num;
+            double resolution{0.0};
+            double resolution_inv{0.0};
+            double sliding_thresh{0.0};
+            bool map_sliding_en{false};
+            Vec3f fix_map_origin{};
+            Vec3i visualization_range_i{};
+            Vec3i map_size_i{};
+            Vec3i half_map_size_i{};
+            int virtual_ceil_height_id_g{0};
+            int virtual_ground_height_id_g{0};
+            int map_vox_num{0};
         } sc_;
 
         Vec3f local_map_origin_d_, local_map_bound_min_d_, local_map_bound_max_d_;
