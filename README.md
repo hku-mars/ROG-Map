@@ -17,6 +17,7 @@
     <a href="https://www.bilibili.com/video/BV1wv4y1h7sa/"><img alt="Bilibili" src="./misc/Video-Bilibili-blue.svg"/></a>
     <a href="https://youtu.be/eDkwGXCea7w?si=IKCW5O0otU0bObbC"><img alt="Youtube" src="./misc/Video-Youtube-red.svg"/></a>
 </div>
+
 ## Updates
 
 * **January 29, 2025** - The ROS2 version of ROG-Map is now available in [SUPER ](https://github.com/hku-mars/SUPER)🛸, our open-source MAV navigation system recently accepted by *Science Robotics*. Check it out!
